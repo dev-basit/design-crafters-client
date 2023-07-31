@@ -7,7 +7,7 @@ export const cards = [
   },
   {
     id: 2,
-    title: "Logo Design",
+    title: "Designers",
     desc: "Build yor brand",
     img: "https://images.pexels.com/photos/11295165/pexels-photo-11295165.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
   },

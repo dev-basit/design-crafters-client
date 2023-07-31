@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navbar.scss";
 
 function Navbar() {
@@ -37,34 +37,49 @@ function Navbar() {
           {/* <span className="dot">.</span> */}
         </div>
         <div className="links">
+          <NavLink to="/gigs" className="link" activeClassName="activeLink" exact>
+            <span className="text">Artists</span>
+          </NavLink>
+          <NavLink to="/gigs" className="link" activeClassName="activeLink" exact>
+            <span className="text">My Projects</span>
+          </NavLink>
+          <NavLink to="/gigs" className="link" activeClassName="activeLink" exact>
+            <span className="text">Gigs</span>
+          </NavLink>
+
+          {/* <Link className="link" to="/gigs">
+            <span className="text">Artists</span>
+          </Link>
+          <Link className="link" to="/gigs">
+            <span className="text">My Projects</span>
+          </Link>
           <Link className="link" to="/gigs">
             <span className="text">Gigs</span>
-          </Link>
-          {/* <span>Liverr Business</span> */}
-          {/* <span>Explore</span> */}
-          {/* <span>English</span> */}
+          </Link> */}
+
           {!currentUser?.isSeller && <span>Become a Seller</span>}
           {currentUser ? (
-            <div className="user" onClick={() => setOpen(!open)}>
+            <div
+              className="user"
+              onClick={() => setOpen(!open)}
+              // onMouseOver={() => setOpen(true)}
+              // onMouseOut={() => setOpen(false)}
+            >
               <img src="/img/daniyal.jpeg" alt="" />
               <span>{currentUser?.username}</span>
               {open && (
                 <div className="options">
-                  {currentUser.isSeller && (
-                    <>
-                      <Link className="link" to="/mygigs">
-                        Gigs
-                      </Link>
-                      <Link className="link" to="/add">
-                        Add New Gig
-                      </Link>
-                    </>
-                  )}
+                  <Link className="link" to="/profile">
+                    My Profile
+                  </Link>
+                  <Link className="link" to="/mygigs">
+                    Gigs
+                  </Link>
+                  <Link className="link" to="/add">
+                    Add New Gig
+                  </Link>
                   <Link className="link" to="/orders">
                     Orders
-                  </Link>
-                  <Link className="link" to="/messages">
-                    Messages
                   </Link>
                   <Link className="link" to="/">
                     Logout

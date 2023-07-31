@@ -1,4 +1,12 @@
 .home {
+  .featured_artists {
+    h1 {
+      margin: 1rem 0 1rem 3rem;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 2.4rem;
+    }
+  }
   .features {
     background-color: #f1fdf7;
     display: flex;
@@ -64,7 +72,7 @@
           flex: 3;
         }
 
-        img{
+        img {
           width: 100%;
         }
         h1 {
@@ -77,11 +85,12 @@
           gap: 10px;
           font-weight: 500;
           font-size: 18px;
-          // color: #666;
+          color: #fab7b7;
           // color: white;
           img {
             width: 24px;
             height: 24px;
+            color:red
           }
         }
         p {
@@ -92,7 +101,7 @@
           letter-spacing: 1px;
         }
 
-        video{
+        video {
           width: 720px;
         }
       }
@@ -110,14 +119,14 @@
   .explore {
     display: flex;
     justify-content: center;
+  // overflow: hidden;
 
     .container {
-      width: 100vw;
+      width: 98vw;
       background-color: var(--primary);
       padding: 4rem 0;
 
-
-      h1{
+      h1 {
         // color: #555;
         color: white;
         margin-left: 2rem;
@@ -145,19 +154,19 @@
             height: 50px;
           }
 
-          .line{
+          .line {
             width: 50px;
             height: 2px;
             background-color: lightgray;
-            transition: all .3s ease;
+            transition: all 0.3s ease;
           }
 
           span {
             font-weight: 300;
           }
 
-          &:hover{
-            .line{
+          &:hover {
+            .line {
               width: 80px;
               // background-color: #1dbf73;
             }

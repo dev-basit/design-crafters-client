@@ -23,8 +23,8 @@ function Gigs() {
     <div className="gigs">
       <div className="container">
         <span className="breadcrumbs">Design Crafters</span>
-        <h1>AI Artists</h1>
-        <p>Explore the boundaries of art and technology with Liverr's AI artists</p>
+        <h1>Best Artists</h1>
+        <p>Explore the boundaries of art and technology with Design Crafters artists</p>
         <div className="menu">
           <div className="left">
             <span>Budget</span>

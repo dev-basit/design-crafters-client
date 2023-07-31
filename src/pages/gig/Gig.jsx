@@ -7,7 +7,7 @@ function Gig() {
     <div className="gig">
       <div className="container">
         <div className="left">
-          <span className="breadcrumbs">Liverr > Graphics & Design ></span>
+          <span className="breadcrumbs">Design Crafters</span>
           <h1>I will create ai generated art for you</h1>
           <div className="user">
             <img
@@ -41,19 +41,15 @@ function Gig() {
           </Slider>
           <h2>About This Gig</h2>
           <p>
-            I use an AI program to create images based on text prompts. This
-            means I can help you to create a vision you have through a textual
-            description of your scene without requiring any reference images.
-            Some things I've found it often excels at are: Character portraits
-            (E.g. a picture to go with your DnD character) Landscapes (E.g.
-            wallpapers, illustrations to compliment a story) Logos (E.g. Esports
-            team, business, profile picture) You can be as vague or as
-            descriptive as you want. Being more vague will allow the AI to be
-            more creative which can sometimes result in some amazing images. You
-            can also be incredibly precise if you have a clear image of what you
-            want in mind. All of the images I create are original and will be
-            found nowhere else. If you have any questions you're more than
-            welcome to send me a message.
+            I use an AI program to create images based on text prompts. This means I can help you to
+            create a vision you have through a textual description of your scene without requiring any
+            reference images. Some things I've found it often excels at are: Character portraits (E.g. a
+            picture to go with your DnD character) Landscapes (E.g. wallpapers, illustrations to
+            compliment a story) Logos (E.g. Esports team, business, profile picture) You can be as vague
+            or as descriptive as you want. Being more vague will allow the AI to be more creative which
+            can sometimes result in some amazing images. You can also be incredibly precise if you have a
+            clear image of what you want in mind. All of the images I create are original and will be
+            found nowhere else. If you have any questions you're more than welcome to send me a message.
           </p>
           <div className="seller">
             <h2>About The Seller</h2>
@@ -100,10 +96,9 @@ function Gig() {
               </div>
               <hr />
               <p>
-                My name is Anna, I enjoy creating AI generated art in my spare
-                time. I have a lot of experience using the AI program and that
-                means I know what to prompt the AI with to get a great and
-                incredibly detailed result.
+                My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of
+                experience using the AI program and that means I know what to prompt the AI with to get a
+                great and incredibly detailed result.
               </p>
             </div>
           </div>
@@ -136,12 +131,11 @@ function Gig() {
                 <span>5</span>
               </div>
               <p>
-                I just want to say that art_with_ai was the first, and after
-                this, the only artist Ill be using on Fiverr. Communication was
-                amazing, each and every day he sent me images that I was free to
-                request changes to. They listened, understood, and delivered
-                above and beyond my expectations. I absolutely recommend this
-                gig, and know already that Ill be using it again very very soon
+                I just want to say that art_with_ai was the first, and after this, the only artist Ill be
+                using on Fiverr. Communication was amazing, each and every day he sent me images that I
+                was free to request changes to. They listened, understood, and delivered above and beyond
+                my expectations. I absolutely recommend this gig, and know already that Ill be using it
+                again very very soon
               </p>
               <div className="helpful">
                 <span>Helpful?</span>
@@ -179,10 +173,9 @@ function Gig() {
                 <span>5</span>
               </div>
               <p>
-                The designer took my photo for my book cover to the next level!
-                Professionalism and ease of working with designer along with
-                punctuality is above industry standards!! Whatever your project
-                is, you need this designer!
+                The designer took my photo for my book cover to the next level! Professionalism and ease
+                of working with designer along with punctuality is above industry standards!! Whatever
+                your project is, you need this designer!
               </p>
               <div className="helpful">
                 <span>Helpful?</span>
@@ -220,11 +213,10 @@ function Gig() {
                 <span>5</span>
               </div>
               <p>
-                Amazing work! Communication was
-                amazing, each and every day he sent me images that I was free to
-                request changes to. They listened, understood, and delivered
-                above and beyond my expectations. I absolutely recommend this
-                gig, and know already that Ill be using it again very very soon
+                Amazing work! Communication was amazing, each and every day he sent me images that I was
+                free to request changes to. They listened, understood, and delivered above and beyond my
+                expectations. I absolutely recommend this gig, and know already that Ill be using it
+                again very very soon
               </p>
               <div className="helpful">
                 <span>Helpful?</span>
@@ -242,8 +234,8 @@ function Gig() {
             <h2>$ 59.99</h2>
           </div>
           <p>
-            I will create a unique high quality AI generated image based on a
-            description that you give me
+            I will create a unique high quality AI generated image based on a description that you give
+            me
           </p>
           <div className="details">
             <div className="item">

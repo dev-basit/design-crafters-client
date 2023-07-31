@@ -2,7 +2,7 @@
   height: 600px;
   display: flex;
   justify-content: center;
-  background-color: #6c0707;
+  background-color: var(--primary);
   color: white;
 
   .container {
@@ -56,7 +56,7 @@
           width: 120px;
           height: 50px;
           border: none;
-          background-color: #1dbf73;
+          background-color:var(--button-color);
           color: white;
           align-self: flex-end;
           cursor: pointer;
@@ -89,6 +89,7 @@
       img {
         height: 100%;
         object-fit: contain;
+        overflow: hidden;
       }
     }
   }

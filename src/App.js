@@ -14,6 +14,7 @@ import Orders from "./pages/orders/Orders";
 import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
 import MyGigs from "./pages/myGigs/MyGigs";
+import Profile from "./components/profile/profile";
 
 function App() {
   const Layout = () => {
@@ -62,6 +63,10 @@ function App() {
         {
           path: "/gig/:id",
           element: <Gig />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
       ],
     },

@@ -18,13 +18,18 @@ function Home() {
   return (
     <div className="home">
       <Featured />
+
       {/* <TrustedBy /> */}
 
-      <Slide slidesToShow={4} arrowsScroll={4}>
-        {projects.map((card) => (
-          <ProjectCard key={card.id} card={card} />
-        ))}
-      </Slide>
+      <div className="featured_artists">
+        <h1>Top Artists:</h1>
+
+        <Slide slidesToShow={4} arrowsScroll={4}>
+          {projects.map((card) => (
+            <ProjectCard key={card.id} card={card} />
+          ))}
+        </Slide>
+      </div>
 
       <div className="explore">
         <div className="container">
@@ -80,7 +85,7 @@ function Home() {
           <div className="item">
             <h1>A whole world of freelance artists at your fingertips</h1>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <span>&#10003;</span>
               The best for every budget
             </div>
             <p>
@@ -88,12 +93,12 @@ function Home() {
               pricing.
             </p>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <span>&#10003;</span>
               Quality work done quickly
             </div>
             <p>Find the right freelancer to begin working on your project within minutes.</p>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <span>&#10003;</span>
               Protected payments, every time
             </div>
             <p>
@@ -101,7 +106,7 @@ function Home() {
               work.
             </p>
             <div className="title">
-              <img src="./img/check.png" alt="" />
+              <span>&#10003;</span>
               24/7 support
             </div>
             <p>
