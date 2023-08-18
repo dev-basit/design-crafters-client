@@ -1,19 +1,107 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Joi from "joi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import http from "../../services/httpService";
+import { baseURL } from "../../utils/config";
 import "./Register.scss";
 
 export default function Register() {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    userType: "",
+  });
+
+  useEffect(() => {}, [user]);
+
+  const schema = Joi.object({
+    name: Joi.string().min(3).max(50).required(),
+    email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email({ tlds: { allow: false } }),
+    password: Joi.string().min(4).max(1024).required(),
+    userType: Joi.string().valid("buyer", "seller").required(),
+  });
+
+  const handleChange = (e) => {
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { error } = schema.validate(user);
+    if (error) return toast.error(error.message);
+
+    // const url = await upload(file);
+
+    try {
+      await http.post(baseURL + "users", { ...user });
+      toast.success("Successfuly created new account!");
+      setUser({
+        name: "",
+        email: "",
+        password: "",
+        userType: "",
+      });
+
+      // navigate("/")
+    } catch (err) {
+      toast.error(err.data.errorMessage);
+    }
+  };
+
   return (
     <div className="register">
+      <ToastContainer />
       <span className="registerTitle">Register</span>
-      <form className="registerForm">
-        <label>Username</label>
-        <input type="text" placeholder="Enter your username." className="registerInput" />
-        <label>Email</label>
-        <input type="text" placeholder="Enter your email address." className="registerInput" />
-        <label>Password</label>
-        <input type="password" placeholder="Enter your password." className="registerInput" />
+      <form className="registerForm" onSubmit={handleSubmit}>
+        <label htmlFor="name">Username</label>
+        <input
+          name="name"
+          type="text"
+          placeholder="Daniyal"
+          className="registerInput"
+          onChange={handleChange}
+        />
+        <label htmlFor="email">Email</label>
+        <input
+          name="email"
+          type="text"
+          placeholder="Enter your email address."
+          className="registerInput"
+          onChange={handleChange}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          name="password"
+          type="password"
+          placeholder="Enter your password."
+          className="registerInput"
+          onChange={handleChange}
+        />
+
+        <div style={{ margin: "1rem 1rem 1rem 0 " }}>
+          <span style={{ marginRight: "1rem" }}>Are you Seller or Buyer?</span>
+          <select value={user.userType} name="userType" onChange={handleChange}>
+            <option value="">Select</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+          </select>
+        </div>
+        <h3>Selected Role: {user.userType}</h3>
+
         <button className="registerButton">Register</button>
       </form>
+
       <button className="registerLoginButton">
         <Link to="/login" className="link">
           Login
