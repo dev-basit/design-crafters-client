@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Joi from "joi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-import http from "../../services/httpService";
-import { baseURL } from "../../utils/config";
 import "./Register.scss";
+import { http } from "../../services/httpService";
+import { baseURL } from "../../utils/config";
+import { showFailureToaster, showSuccessToaster } from "../../utils/toaster";
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -39,13 +38,14 @@ export default function Register() {
     e.preventDefault();
 
     const { error } = schema.validate(user);
-    if (error) return toast.error(error.message);
+    if (error) return showFailureToaster(error.message);
 
     // const url = await upload(file);
 
     try {
       await http.post(baseURL + "users", { ...user });
-      toast.success("Successfuly created new account!");
+      showSuccessToaster("Successfuly created new account!");
+
       setUser({
         name: "",
         email: "",
@@ -55,13 +55,12 @@ export default function Register() {
 
       // navigate("/")
     } catch (err) {
-      toast.error(err.data.errorMessage);
+      showFailureToaster("Backend server is not running. Please start it.");
     }
   };
 
   return (
     <div className="register">
-      <ToastContainer />
       <span className="registerTitle">Register</span>
       <form className="registerForm" onSubmit={handleSubmit}>
         <label htmlFor="name">Username</label>
