@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./Register.scss";
 import { showFailureToaster } from "../../utils/toaster";
-import { addNewUser, newUserSchema } from "../../services/userService";
+import { userService } from "../../services/userService";
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -26,16 +26,16 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { error } = newUserSchema.validate(user);
+    const { error } = userService.newUserSchema.validate(user);
     if (error) return showFailureToaster(error.message);
 
     try {
       // const url = await upload(file);
-      await addNewUser({ ...user });
+      const isSignup = await userService.addNewUser({ ...user });
+      if (isSignup) navigate("/");
+
       // setUser({ name: "", email: "", password: "", userType: "" });
     } catch (error) {}
-
-    navigate("/");
   };
 
   return (

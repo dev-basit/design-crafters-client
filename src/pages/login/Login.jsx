@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./Login.scss";
 import { showFailureToaster } from "../../utils/toaster";
-import { login, userLoginSchema } from "../../services/authService";
+import { auth } from "../../services/authService";
 
 function Login() {
   const [user, setUser] = useState({
@@ -24,15 +24,15 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { error } = userLoginSchema.validate(user);
+    const { error } = auth.userLoginSchema.validate(user);
     if (error) return showFailureToaster(error.message);
 
     try {
-      await login({ ...user });
+      const isLogin = await auth.login({ ...user });
+      if (isLogin) navigate("/");
+
       // setUser({ name: "", email: "", password: "", userType: "" });
     } catch (error) {}
-
-    navigate("/");
   };
 
   return (

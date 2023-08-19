@@ -1,12 +1,15 @@
 import Joi from "joi";
+import jwtDecode from "jwt-decode";
+
 import { http } from "./httpService";
 import { baseURL } from "../utils/config";
 import { showFailureToaster, showSuccessToaster } from "../utils/toaster";
-import { setLocalStorageItem } from "../utils/localStorage";
+import { getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem } from "../utils/localStorage";
 
 const loginApiEndpoint = baseURL + "auth";
+const tokenKey = "token";
 
-export const userLoginSchema = Joi.object({
+const userLoginSchema = Joi.object({
   email: Joi.string()
     .min(5)
     .max(255)
@@ -15,14 +18,34 @@ export const userLoginSchema = Joi.object({
   password: Joi.string().min(4).max(1024).required(),
 });
 
-export async function login(user) {
+async function login(user) {
   try {
     const response = await http.post(loginApiEndpoint, { ...user });
-    setLocalStorageItem("token", response.data.jwt);
+    setLocalStorageItem(tokenKey, response.data.jwt);
     showSuccessToaster("Successfuly Logged In!");
+    return true;
   } catch (err) {
     showFailureToaster(err.data.errorMessage);
+    return false;
   }
 }
 
-export function logout() {}
+function logout() {
+  return removeLocalStorageItem(tokenKey);
+}
+
+async function getCurrentUserDetails() {
+  try {
+    const jwt = getLocalStorageItem(tokenKey);
+    return await jwtDecode(jwt);
+  } catch (error) {
+    return null;
+  }
+}
+
+export const auth = {
+  userLoginSchema,
+  login,
+  logout,
+  getCurrentUserDetails,
+};

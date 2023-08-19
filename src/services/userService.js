@@ -6,7 +6,7 @@ import { setLocalStorageItem } from "../utils/localStorage";
 
 const userApiEndpoint = baseURL + "users";
 
-export const newUserSchema = Joi.object({
+const newUserSchema = Joi.object({
   name: Joi.string().min(3).max(50).required(),
   email: Joi.string()
     .min(5)
@@ -17,12 +17,19 @@ export const newUserSchema = Joi.object({
   userType: Joi.string().valid("buyer", "seller").required(),
 });
 
-export async function addNewUser(user) {
+async function addNewUser(user) {
   try {
     const response = await http.post(userApiEndpoint, { ...user });
     setLocalStorageItem("token", response.headers["x-auth-token"]);
     showSuccessToaster("Successfuly created new account!");
+    return true;
   } catch (err) {
     showFailureToaster(err.data.errorMessage);
+    return false;
   }
 }
+
+export const userService = {
+  newUserSchema,
+  addNewUser,
+};

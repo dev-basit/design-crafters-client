@@ -60,7 +60,6 @@ axiosInstance.interceptors.response.use(
     const expectedError = error.response.status >= 400 && error.response.status < 500 && error.response;
     if (!expectedError) {
       showFailureToaster("unexpected error ");
-      // console.log("unexpected error ", error);
     }
 
     showToast("error");
@@ -68,11 +67,9 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-const http = {
+export const http = {
   get: axiosInstance.get,
   post: axiosInstance.post,
   put: axiosInstance.put,
   delete: axiosInstance.delete,
 };
-
-export { http };
