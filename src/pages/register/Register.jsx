@@ -40,7 +40,7 @@ export default function Register() {
   return (
     <div className="register">
       <span className="registerTitle">Register</span>
-      <form className="registerForm" onSubmit={handleSubmit}>
+      <form className="registerForm" autoComplete="on" onSubmit={handleSubmit}>
         <label htmlFor="name">Username</label>
         <input
           name="name"
@@ -48,6 +48,7 @@ export default function Register() {
           placeholder="Daniyal"
           className="registerInput"
           onChange={handleChange}
+          autoComplete="name"
         />
         <label htmlFor="email">Email</label>
         <input
@@ -56,6 +57,7 @@ export default function Register() {
           placeholder="Enter your email address."
           className="registerInput"
           onChange={handleChange}
+          autoComplete="email"
         />
         <label htmlFor="password">Password</label>
         <input
@@ -64,6 +66,7 @@ export default function Register() {
           placeholder="Enter your password."
           className="registerInput"
           onChange={handleChange}
+          autoComplete="password"
         />
 
         <div style={{ margin: "1rem 1rem 1rem 0 " }}>
