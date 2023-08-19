@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import Joi from "joi";
 
 import "./Register.scss";
-import { http } from "../../services/httpService";
-import { baseURL } from "../../utils/config";
-import { showFailureToaster, showSuccessToaster } from "../../utils/toaster";
+import { showFailureToaster } from "../../utils/toaster";
+import { addNewUser, newUserSchema } from "../../services/userService";
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -17,17 +15,6 @@ export default function Register() {
 
   useEffect(() => {}, [user]);
 
-  const schema = Joi.object({
-    name: Joi.string().min(3).max(50).required(),
-    email: Joi.string()
-      .min(5)
-      .max(255)
-      .required()
-      .email({ tlds: { allow: false } }),
-    password: Joi.string().min(4).max(1024).required(),
-    userType: Joi.string().valid("buyer", "seller").required(),
-  });
-
   const handleChange = (e) => {
     setUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -37,26 +24,17 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { error } = schema.validate(user);
+    const { error } = newUserSchema.validate(user);
     if (error) return showFailureToaster(error.message);
 
     // const url = await upload(file);
 
     try {
-      await http.post(baseURL + "users", { ...user });
-      showSuccessToaster("Successfuly created new account!");
+      await addNewUser({ ...user });
+      // setUser({ name: "", email: "", password: "", userType: "" });
+    } catch (error) {}
 
-      setUser({
-        name: "",
-        email: "",
-        password: "",
-        userType: "",
-      });
-
-      // navigate("/")
-    } catch (err) {
-      showFailureToaster("Backend server is not running. Please start it.");
-    }
+    // navigate("/")
   };
 
   return (
