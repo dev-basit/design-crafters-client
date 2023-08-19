@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Register.scss";
 import { showFailureToaster } from "../../utils/toaster";
@@ -12,9 +12,11 @@ export default function Register() {
     password: "",
     userType: "",
   });
+  const navigate = useNavigate();
 
   useEffect(() => {}, [user]);
 
+  //
   const handleChange = (e) => {
     setUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -27,14 +29,13 @@ export default function Register() {
     const { error } = newUserSchema.validate(user);
     if (error) return showFailureToaster(error.message);
 
-    // const url = await upload(file);
-
     try {
+      // const url = await upload(file);
       await addNewUser({ ...user });
       // setUser({ name: "", email: "", password: "", userType: "" });
     } catch (error) {}
 
-    // navigate("/")
+    navigate("/");
   };
 
   return (

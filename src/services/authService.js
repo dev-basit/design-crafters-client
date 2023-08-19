@@ -4,25 +4,25 @@ import { baseURL } from "../utils/config";
 import { showFailureToaster, showSuccessToaster } from "../utils/toaster";
 import { setLocalStorageItem } from "../utils/localStorage";
 
-const userApiEndpoint = baseURL + "users";
+const loginApiEndpoint = baseURL + "auth";
 
-export const newUserSchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
+export const userLoginSchema = Joi.object({
   email: Joi.string()
     .min(5)
     .max(255)
     .required()
     .email({ tlds: { allow: false } }),
   password: Joi.string().min(4).max(1024).required(),
-  userType: Joi.string().valid("buyer", "seller").required(),
 });
 
-export async function addNewUser(user) {
+export async function login(user) {
   try {
-    const response = await http.post(userApiEndpoint, { ...user });
-    setLocalStorageItem("token", response.headers["x-auth-token"]);
-    showSuccessToaster("Successfuly created new account!");
+    const response = await http.post(loginApiEndpoint, { ...user });
+    setLocalStorageItem("token", response.data.jwt);
+    showSuccessToaster("Successfuly Logged In!");
   } catch (err) {
     showFailureToaster(err.data.errorMessage);
   }
 }
+
+export function logout() {}
