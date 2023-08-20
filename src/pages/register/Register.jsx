@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./Register.scss";
 import { showFailureToaster } from "../../utils/toaster";
+import { auth } from "../../services/authService";
 import { userService } from "../../services/userService";
 
 export default function Register() {
@@ -14,7 +15,9 @@ export default function Register() {
   });
   const navigate = useNavigate();
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    if (auth.getCurrentUserDetails()) navigate("/");
+  }, [user]);
 
   //
   const handleChange = (e) => {

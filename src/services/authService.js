@@ -2,7 +2,7 @@ import Joi from "joi";
 import jwtDecode from "jwt-decode";
 
 import { http } from "./httpService";
-import { baseURL } from "../utils/config";
+import { baseURL } from "../constants/config";
 import { showFailureToaster, showSuccessToaster } from "../utils/toaster";
 import { getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem } from "../utils/localStorage";
 
@@ -18,6 +18,8 @@ const userLoginSchema = Joi.object({
   password: Joi.string().min(4).max(1024).required(),
 });
 
+http.setJwt(getJwt());
+
 async function login(user) {
   try {
     const response = await http.post(loginApiEndpoint, { ...user });
@@ -31,16 +33,25 @@ async function login(user) {
 }
 
 function logout() {
-  return removeLocalStorageItem(tokenKey);
+  removeLocalStorageItem(tokenKey);
+  window.location = "/login";
+  return;
 }
 
-async function getCurrentUserDetails() {
+function getCurrentUserDetails() {
   try {
     const jwt = getLocalStorageItem(tokenKey);
-    return await jwtDecode(jwt);
+    if (jwt) {
+      return jwtDecode(jwt);
+    }
+    return null;
   } catch (error) {
     return null;
   }
+}
+
+function getJwt() {
+  return getLocalStorageItem(tokenKey);
 }
 
 export const auth = {
@@ -48,4 +59,5 @@ export const auth = {
   login,
   logout,
   getCurrentUserDetails,
+  getJwt,
 };

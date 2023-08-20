@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { http } from "./httpService";
-import { baseURL } from "../utils/config";
+import { baseURL } from "../constants/config";
 import { showFailureToaster, showSuccessToaster } from "../utils/toaster";
 import { setLocalStorageItem } from "../utils/localStorage";
 

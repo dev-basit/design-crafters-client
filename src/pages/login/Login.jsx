@@ -12,7 +12,9 @@ function Login() {
   });
   const navigate = useNavigate();
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    if (auth.getCurrentUserDetails()) navigate("/");
+  }, [user]);
 
   //
   const handleChange = (e) => {

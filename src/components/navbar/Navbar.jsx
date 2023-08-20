@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+
 import "./Navbar.scss";
+import { auth } from "../../services/authService";
 
 function Navbar() {
   const [active, setActive] = useState(false);
@@ -37,7 +39,7 @@ function Navbar() {
           {/* <span className="dot">.</span> */}
         </div>
         <div className="links">
-          <NavLink to="/gigs" className="link" activeClassName="activeLink" exact>
+          <NavLink to="/artists" className="link" activeClassName="activeLink" exact>
             <span className="text">Artists</span>
           </NavLink>
           <NavLink to="/gigs" className="link" activeClassName="activeLink" exact>
@@ -81,9 +83,11 @@ function Navbar() {
                   <Link className="link" to="/orders">
                     Orders
                   </Link>
-                  <Link className="link" to="/">
-                    Logout
-                  </Link>
+                  <div onClick={() => auth.logout()}>
+                    <Link className="link" to="/">
+                      Logout
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
