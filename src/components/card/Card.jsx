@@ -1,9 +1,9 @@
 import React from "react";
-import "./ProjectCard.scss";
+import "./Card.scss";
 
-function ProjectCard({ card }) {
+function Card({ card }) {
   return (
-    <div className="projectCard">
+    <div className="Card">
       <img src={card.img} alt="" />
       <div className="info">
         <img src={card.pp} alt="" />
@@ -16,4 +16,4 @@ function ProjectCard({ card }) {
   );
 }
 
-export default ProjectCard;
+export default Card;
