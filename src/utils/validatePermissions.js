@@ -3,6 +3,7 @@ import { auth } from "../services/authService";
 import Login from "../pages/login/Login";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+import Register from "../pages/register/Register";
 
 export function PrivateRoutes({ permissions, children }) {
   if (hasPermission(permissions)) {
@@ -16,7 +17,8 @@ export function PrivateRoutes({ permissions, children }) {
   }
 
   /* Permission not available, you cannot acces this page, you can also log out the user */
-  return <Login />;
+  if (window.location.pathname === "/register") return <Register />;
+  else return <Login />;
 }
 
 function hasPermission(permissions) {

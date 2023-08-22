@@ -5,6 +5,8 @@ import "./Register.scss";
 import { showFailureToaster } from "../../utils/toaster";
 import { auth } from "../../services/authService";
 import { userService } from "../../services/userService";
+import { uploadImage } from "../../services/imageService";
+import { cloudinary, imageUploadUrl } from "../../constants/config";
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -12,6 +14,7 @@ export default function Register() {
     email: "",
     password: "",
     userType: "",
+    profilePicture: "",
   });
   const navigate = useNavigate();
 
@@ -26,6 +29,22 @@ export default function Register() {
     });
   };
 
+  const handleUploadImage = async (e) => {
+    e.preventDefault();
+
+    let file = e.target.files[0];
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", cloudinary.upload_preset);
+
+    try {
+      let uploadedImageUrl = await uploadImage(imageUploadUrl, formData);
+      setUser((prev) => {
+        return { ...prev, profilePicture: uploadedImageUrl };
+      });
+    } catch (error) {}
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,18 +52,16 @@ export default function Register() {
     if (error) return showFailureToaster(error.message);
 
     try {
-      // const url = await upload(file);
       const isSignup = await userService.addNewUser({ ...user });
       if (isSignup) navigate("/");
-
       // setUser({ name: "", email: "", password: "", userType: "" });
     } catch (error) {}
   };
 
   return (
-    <div className="register">
-      <span className="registerTitle">Register</span>
+    <div className="registerScreen">
       <form className="registerForm" autoComplete="on" onSubmit={handleSubmit}>
+        <span className="registerTitle">Register</span>
         <label htmlFor="name">Username</label>
         <input
           name="name"
@@ -72,6 +89,13 @@ export default function Register() {
           onChange={handleChange}
           autoComplete="password"
         />
+        <div className="fileInputContainer">
+          <label for="upload" className="file-label">
+            <span className="file-icon">📁</span>
+            Upload Profile Pic
+          </label>
+          <input type="file" id="upload" className="file-input" onChange={handleUploadImage} />
+        </div>
 
         <div style={{ margin: "1rem 1rem 1rem 0 " }}>
           <span style={{ marginRight: "1rem" }}>Are you Seller or Buyer?</span>

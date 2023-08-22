@@ -15,6 +15,7 @@ const newUserSchema = Joi.object({
     .email({ tlds: { allow: false } }),
   password: Joi.string().min(4).max(1024).required(),
   userType: Joi.string().valid("buyer", "seller").required(),
+  profilePicture: Joi.string().required(),
 });
 
 async function addNewUser(user) {

@@ -1,17 +1,26 @@
 import React from "react";
 
 import "./Artist.scss";
-import Card from "../../components/card/Card";
-import { projects } from "../../data";
+import { artists } from "../../data";
 
 function Artists() {
   return (
     <div className="artists">
-      {projects.map((card, index) => (
-        <div className="artistsCardContainer" key={index}>
-          <Card key={card.id} card={card} />
-        </div>
-      ))}
+      {artists.length === 0 && <h1>No artists available.</h1>}
+
+      {artists.length > 0 && <h1>Top artists available.</h1>}
+      {artists.length > 0 &&
+        artists.map((card, index) => (
+          <div className="artistsCardContainer" key={index}>
+            <div className="info">
+              <img src={card.pp} alt="" />
+              <div>
+                <h3>{card.username}</h3>
+                <span>{card.cat}</span>
+              </div>
+            </div>
+          </div>
+        ))}
     </div>
   );
 }

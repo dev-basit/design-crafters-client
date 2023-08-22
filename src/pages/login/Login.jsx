@@ -38,7 +38,7 @@ function Login() {
   };
 
   return (
-    <div className="login">
+    <div className="loginScreen">
       <form className="loginForm" onSubmit={handleSubmit}>
         <h1>Sign in</h1>
 

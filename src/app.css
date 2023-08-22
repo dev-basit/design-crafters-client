@@ -12,4 +12,10 @@
 :root {
   --primary: #6c0707;
   --button-color: #023f23;
+  --background-color: #f3e6e6;
+  --border-color: #6c0707;
+}
+
+body {
+  background-color: var(--background-color);
 }

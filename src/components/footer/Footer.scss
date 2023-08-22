@@ -1,9 +1,10 @@
 .footer {
   display: flex;
   justify-content: center;
-  color:white;
-  background-color:var(--primary);
+  color: white;
+  background-color: var(--primary);
   padding: 50px 0px;
+  height: calc(100vh - 5rem);
 
   img {
     width: 24px;
@@ -21,8 +22,7 @@
         gap: 20px;
         h2 {
           font-size: 25px;
-          color:white;
-
+          color: white;
         }
         span {
           font-weight: 300;
@@ -67,7 +67,6 @@
           align-items: center;
           gap: 10px;
         }
-
       }
     }
   }
