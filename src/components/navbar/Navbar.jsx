@@ -3,16 +3,13 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 
 import "./Navbar.scss";
 import { auth } from "../../services/authService";
+import { userService } from "../../services/userService";
 
 function Navbar() {
+  const [userDetails, setUserDetails] = useState({});
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
-
   const { pathname } = useLocation();
-
-  const isActive = () => {
-    window.scrollY > 0 ? setActive(true) : setActive(false);
-  };
 
   useEffect(() => {
     window.addEventListener("scroll", isActive);
@@ -21,12 +18,20 @@ function Navbar() {
     };
   }, []);
 
-  // const currentUser = null
+  useEffect(() => {
+    if (!userDetails.name) fetchUserDetails();
+  }, []);
 
-  const currentUser = {
-    id: 1,
-    username: "Daniyal",
-    isSeller: true,
+  const fetchUserDetails = async () => {
+    const response = await userService.getMyDetails();
+    if (response?.status === 200) {
+      const { name, profilePicture, userType } = response.data;
+      setUserDetails({ name, profilePicture, userType });
+    }
+  };
+
+  const isActive = () => {
+    window.scrollY > 0 ? setActive(true) : setActive(false);
   };
 
   return (
@@ -36,7 +41,6 @@ function Navbar() {
           <Link className="link" to="/">
             <span className="text">Design Crafters</span>
           </Link>
-          {/* <span className="dot">.</span> */}
         </div>
         <div className="links">
           <NavLink to="/artists" className="link" activeClassName="activeLink" exact>
@@ -59,16 +63,10 @@ function Navbar() {
             <span className="text">Gigs</span>
           </Link> */}
 
-          {!currentUser?.isSeller && <span>Become a Seller</span>}
-          {currentUser ? (
-            <div
-              className="user"
-              onClick={() => setOpen(!open)}
-              // onMouseOver={() => setOpen(true)}
-              // onMouseOut={() => setOpen(false)}
-            >
-              <img src="/img/daniyal.jpeg" alt="" />
-              <span>{currentUser?.username}</span>
+          {userDetails ? (
+            <div className="user" onClick={() => setOpen(!open)}>
+              <img src={userDetails.profilePicture} alt="" />
+              <span>{userDetails?.name}</span>
               {open && (
                 <div className="options">
                   <Link className="link" to="/profile">

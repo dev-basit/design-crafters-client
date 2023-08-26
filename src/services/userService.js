@@ -30,7 +30,17 @@ async function addNewUser(user) {
   }
 }
 
+async function getMyDetails() {
+  try {
+    return await http.get(userApiEndpoint + "/me");
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 export const userService = {
   newUserSchema,
   addNewUser,
+  getMyDetails,
 };

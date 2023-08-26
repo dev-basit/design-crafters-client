@@ -19,15 +19,15 @@ import Register from "../pages/register/Register";
 // import MyGigs from "./pages/myGigs/MyGigs";
 // import Profile from "./components/profile/profile";
 
-const Layout = () => {
-  return (
-    <div className="app">
-      <Navbar />
-      <Home />
-      <Footer />
-    </div>
-  );
-};
+// const Layout = () => {
+//   return (
+//     <div className="app">
+//       <Navbar />
+//       <Home />
+//       <Footer />
+//     </div>
+//   );
+// };
 
 export const navbarItems = [
   {
@@ -61,7 +61,7 @@ export const links = [
   },
   {
     path: "*",
-    component: Layout,
+    component: Home,
     permissions: [""],
   },
 ];
