@@ -7,7 +7,7 @@ function Gig() {
     <div className="gig">
       <div className="container">
         <div className="left">
-          <span className="breadcrumbs">Design Crafters</span>
+          {/* <span className="breadcrumbs">Design Crafters</span> */}
           <h1>I will create ai generated art for you</h1>
           <div className="user">
             <img
@@ -16,16 +16,22 @@ function Gig() {
               alt=""
             />
             <span>Anna Bell</span>
-            <div className="stars">
+            {/* <div className="stars">
               <img src="/img/star.png" alt="" />
               <img src="/img/star.png" alt="" />
               <img src="/img/star.png" alt="" />
               <img src="/img/star.png" alt="" />
               <img src="/img/star.png" alt="" />
               <span>5</span>
-            </div>
+            </div> */}
           </div>
-          <Slider slidesToShow={1} arrowsScroll={1} className="slider">
+          <div className="slider">
+            <img
+              src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt=""
+            />
+          </div>
+          {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider">
             <img
               src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt=""
@@ -38,8 +44,8 @@ function Gig() {
               src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt=""
             />
-          </Slider>
-          <h2>About This Gig</h2>
+          </Slider> */}
+          <h2>Description:</h2>
           <p>
             I use an AI program to create images based on text prompts. This means I can help you to
             create a vision you have through a textual description of your scene without requiring any
@@ -59,19 +65,20 @@ function Gig() {
                 alt=""
               />
               <div className="info">
-                <span>Anna Bell</span>
-                <div className="stars">
+                <h3>Anna Bell</h3>
+                {/* <div className="stars">
                   <img src="/img/star.png" alt="" />
                   <img src="/img/star.png" alt="" />
                   <img src="/img/star.png" alt="" />
                   <img src="/img/star.png" alt="" />
                   <img src="/img/star.png" alt="" />
                   <span>5</span>
-                </div>
-                <button>Contact Me</button>
+                </div> 
+                <button>Hire me</button>
+                */}
               </div>
             </div>
-            <div className="box">
+            {/* <div className="box">
               <div className="items">
                 <div className="item">
                   <span className="title">From</span>
@@ -100,9 +107,9 @@ function Gig() {
                 experience using the AI program and that means I know what to prompt the AI with to get a
                 great and incredibly detailed result.
               </p>
-            </div>
+            </div> */}
           </div>
-          <div className="reviews">
+          {/* <div className="reviews">
             <h2>Reviews</h2>
             <div className="item">
               <div className="user">
@@ -226,7 +233,7 @@ function Gig() {
                 <span>No</span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="right">
           <div className="price">
@@ -265,7 +272,7 @@ function Gig() {
               <span>Additional design</span>
             </div>
           </div>
-          <button>Continue</button>
+          <button className="">Hire Now</button>
         </div>
       </div>
     </div>

@@ -46,7 +46,7 @@ function Navbar() {
           <NavLink to="/artists" className="link" activeClassName="activeLink" exact>
             <span className="text">Artists</span>
           </NavLink>
-          <NavLink to="/gigs" className="link" activeClassName="activeLink" exact>
+          <NavLink to="/orders" className="link" activeClassName="activeLink" exact>
             <span className="text">My Projects</span>
           </NavLink>
           <NavLink to="/gigs" className="link" activeClassName="activeLink" exact>
@@ -73,14 +73,14 @@ function Navbar() {
                     My Profile
                   </Link>
                   <Link className="link" to="/mygigs">
-                    Gigs
+                    My Gigs
                   </Link>
-                  <Link className="link" to="/add">
+                  <Link className="link" to="/gig/add">
                     Add New Gig
                   </Link>
-                  <Link className="link" to="/orders">
+                  {/* <Link className="link" to="/orders">
                     Orders
-                  </Link>
+                  </Link> */}
                   <div onClick={() => auth.logout()}>
                     <Link className="link" to="/">
                       Logout
