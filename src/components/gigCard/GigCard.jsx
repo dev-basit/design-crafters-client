@@ -4,30 +4,26 @@ import { Link } from "react-router-dom";
 
 const GigCard = ({ item }) => {
   return (
-    <Link to="/gig/123" className="link">
+    <Link to={`/gig/${item._id}`} className="link">
       <div className="gigCard">
-        <img src={item.img} alt="" />
+        <img src={item.image} alt="" />
         <div className="info">
           <div className="user">
-            <img src={item.pp} alt="" />
-            <span>{item.username}</span>
+            <img src={item.user.profilePicture} alt="" />
+            <h3>{item.user.name.toUpperCase()}</h3>
           </div>
-          <p>{item.desc}</p>
-          <div className="star">
+          {/* <p>{item.desc}</p> */}
+          {/* <div className="star">
             <img src="./img/star.png" alt="" />
             <span>{item.star}</span>
-          </div>
+          </div> */}
         </div>
         <hr />
         <div className="detail">
-          <img src="./img/heart.png" alt="" />
-          <div className="price">
-            <span>STARTING AT</span>
-            <h2>
-              $ {item.price}
-              <sup>99</sup>
-            </h2>
-          </div>
+          <span>{item.title}</span>
+          {/* <img src="./img/heart.png" alt="" /> */}
+          {/* <div className="price"> */}
+          <p>Price: PKR {item.price}</p>
         </div>
       </div>
     </Link>

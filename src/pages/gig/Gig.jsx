@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import "./Gig.scss";
+import { gigService } from "../../services/gigService";
 import { Slider } from "infinite-react-carousel/lib";
 
 function Gig() {
+  const [gigDetails, setGigDetails] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    setGigDetails({});
+    getGigDetails(id);
+  }, [id]);
+
+  const getGigDetails = async (id) => {
+    try {
+      const response = await gigService.getDetails(id);
+      console.log("gig details ", response.data[0]);
+      setGigDetails(response.data[0]);
+    } catch (error) {}
+  };
+
   return (
     <div className="gig">
       <div className="container">
         <div className="left">
           {/* <span className="breadcrumbs">Design Crafters</span> */}
-          <h1>I will create ai generated art for you</h1>
+          <h1>{gigDetails.title}</h1>
           <div className="user">
-            <img
-              className="pp"
-              src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
-            <span>Anna Bell</span>
+            <img className="pp" src={gigDetails.user?.profilePicture} alt="" />
+            <span>{gigDetails.user?.name.toUpperCase()}</span>
             {/* <div className="stars">
               <img src="/img/star.png" alt="" />
               <img src="/img/star.png" alt="" />
@@ -26,10 +41,7 @@ function Gig() {
             </div> */}
           </div>
           <div className="slider">
-            <img
-              src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
-            />
+            <img src={gigDetails.image} alt="" />
           </div>
           {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider">
             <img
@@ -46,26 +58,13 @@ function Gig() {
             />
           </Slider> */}
           <h2>Description:</h2>
-          <p>
-            I use an AI program to create images based on text prompts. This means I can help you to
-            create a vision you have through a textual description of your scene without requiring any
-            reference images. Some things I've found it often excels at are: Character portraits (E.g. a
-            picture to go with your DnD character) Landscapes (E.g. wallpapers, illustrations to
-            compliment a story) Logos (E.g. Esports team, business, profile picture) You can be as vague
-            or as descriptive as you want. Being more vague will allow the AI to be more creative which
-            can sometimes result in some amazing images. You can also be incredibly precise if you have a
-            clear image of what you want in mind. All of the images I create are original and will be
-            found nowhere else. If you have any questions you're more than welcome to send me a message.
-          </p>
+          <p>{gigDetails.description}</p>
           <div className="seller">
             <h2>About The Seller</h2>
             <div className="user">
-              <img
-                src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
+              <img src={gigDetails.user?.profilePicture} alt="" />
               <div className="info">
-                <h3>Anna Bell</h3>
+                <h3>{gigDetails.user?.name.toUpperCase()}</h3>
                 {/* <div className="stars">
                   <img src="/img/star.png" alt="" />
                   <img src="/img/star.png" alt="" />
@@ -236,25 +235,26 @@ function Gig() {
           </div> */}
         </div>
         <div className="right">
-          <div className="price">
+          {/* <div className="price">
             <h3>1 AI generated image</h3>
             <h2>$ 59.99</h2>
           </div>
           <p>
             I will create a unique high quality AI generated image based on a description that you give
             me
-          </p>
+          </p> */}
           <div className="details">
             <div className="item">
               <img src="/img/clock.png" alt="" />
-              <span>2 Days Delivery</span>
+              <span>{gigDetails.deliveredIn} day delivery</span>
             </div>
             <div className="item">
               <img src="/img/recycle.png" alt="" />
-              <span>3 Revisions</span>
+              <span>{gigDetails.NoOfRevisions} Revision free</span>
             </div>
           </div>
-          <div className="features">
+          <h2>Price: PKR {gigDetails.price}</h2>
+          {/* <div className="features">
             <div className="item">
               <img src="/img/greencheck.png" alt="" />
               <span>Prompt writing</span>
@@ -271,7 +271,7 @@ function Gig() {
               <img src="/img/greencheck.png" alt="" />
               <span>Additional design</span>
             </div>
-          </div>
+          </div> */}
           <button className="">Hire Now</button>
         </div>
       </div>

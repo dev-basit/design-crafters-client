@@ -28,7 +28,7 @@ const Add = () => {
     try {
       const { _id } = await auth.getCurrentUserDetails();
       setGigDetails((prev) => {
-        return { ...prev, userId: _id };
+        return { ...prev, user: _id };
       });
     } catch (error) {}
   };

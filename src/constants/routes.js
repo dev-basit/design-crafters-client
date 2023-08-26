@@ -66,9 +66,19 @@ export const links = [
     permissions: ["buyer", "seller"],
   },
   {
+    path: "/gig/add",
+    component: AddGig,
+    permissions: ["seller"],
+  },
+  {
+    path: "/gig/:id",
+    component: GigDetails,
+    permissions: ["buyer", "seller"],
+  },
+  {
     path: "/myGigs",
     component: MyGigs,
-    permissions: ["buyer", "seller"],
+    permissions: ["seller"],
   },
   {
     path: "/orders",
@@ -85,16 +95,7 @@ export const links = [
     component: Message,
     permissions: ["buyer", "seller"],
   },
-  {
-    path: "/gig/add",
-    component: AddGig,
-    permissions: ["buyer", "seller"],
-  },
-  {
-    path: "/gig/:id",
-    component: GigDetails,
-    permissions: ["buyer", "seller"],
-  },
+
   {
     path: "/profile",
     component: Profile,

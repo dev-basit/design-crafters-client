@@ -1,23 +1,37 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss";
 import { gigs } from "../../data";
 import GigCard from "../../components/gigCard/GigCard";
+import { gigService } from "../../services/gigService";
 
 function Gigs() {
-  const [sort, setSort] = useState("sales");
-  const [open, setOpen] = useState(false);
-  const minRef = useRef();
-  const maxRef = useRef();
+  // const [sort, setSort] = useState("sales");
+  // const [open, setOpen] = useState(false);
+  // const minRef = useRef();
+  // const maxRef = useRef();
+  const [gigs, setGigs] = useState([]);
 
-  const reSort = (type) => {
-    setSort(type);
-    setOpen(false);
+  useEffect(() => {
+    fetchGigs();
+  }, []);
+
+  const fetchGigs = async () => {
+    try {
+      const response = await gigService.getAllGigs();
+      console.log("fetch gigs ", response);
+      setGigs(response.data);
+    } catch (error) {}
   };
 
-  const apply = () => {
-    console.log(minRef.current.value);
-    console.log(maxRef.current.value);
-  };
+  // const reSort = (type) => {
+  //   setSort(type);
+  //   setOpen(false);
+  // };
+
+  // const apply = () => {
+  //   console.log(minRef.current.value);
+  //   console.log(maxRef.current.value);
+  // };
 
   return (
     <div className="gigs">
@@ -25,7 +39,7 @@ function Gigs() {
         <span className="breadcrumbs">Design Crafters</span>
         <h1>Best Artists</h1>
         <p>Explore the boundaries of art and technology with Design Crafters artists</p>
-        <div className="menu">
+        {/* <div className="menu">
           <div className="left">
             <span>Budget</span>
             <input ref={minRef} type="number" placeholder="min" />
@@ -47,7 +61,7 @@ function Gigs() {
               </div>
             )}
           </div>
-        </div>
+        </div> */}
         <div className="cards">
           {gigs.map((gig) => (
             <GigCard key={gig.id} item={gig} />

@@ -72,12 +72,16 @@ function Navbar() {
                   <Link className="link" to="/profile">
                     My Profile
                   </Link>
-                  <Link className="link" to="/mygigs">
-                    My Gigs
-                  </Link>
-                  <Link className="link" to="/gig/add">
-                    Add New Gig
-                  </Link>
+                  {userDetails.userType === "seller" && (
+                    <>
+                      <Link className="link" to="/mygigs">
+                        My Gigs
+                      </Link>
+                      <Link className="link" to="/gig/add">
+                        Add New Gig
+                      </Link>
+                    </>
+                  )}
                   {/* <Link className="link" to="/orders">
                     Orders
                   </Link> */}

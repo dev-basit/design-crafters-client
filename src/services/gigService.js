@@ -6,7 +6,7 @@ import { showFailureToaster, showSuccessToaster } from "../utils/toaster";
 const gigApiEndpoint = baseURL + "gigs";
 
 const gigSchema = Joi.object({
-  userId: Joi.string()
+  user: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
     .required(),
   title: Joi.string().min(4).max(200).required(),
@@ -39,7 +39,27 @@ async function addGig(gig) {
   }
 }
 
+async function getAllGigs() {
+  try {
+    return await http.get(gigApiEndpoint);
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
+async function getDetails(id) {
+  try {
+    return await http.get(gigApiEndpoint + "/" + id);
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 export const gigService = {
   gigSchema,
   addGig,
+  getAllGigs,
+  getDetails,
 };
