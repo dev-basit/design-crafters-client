@@ -69,11 +69,21 @@ function Footer() {
           </div>
           <div className="right">
             <div className="social">
-              <img src="/img/twitter.png" alt="" />
-              <img src="/img/facebook.png" alt="" />
-              <img src="/img/linkedin.png" alt="" />
-              <img src="/img/pinterest.png" alt="" />
-              <img src="/img/instagram.png" alt="" />
+              <a href="http://www.twitter.com" target="_blank">
+                <img src="/img/twitter.png" alt="" />
+              </a>
+              <a href="http://www.facebook.com" target="_blank">
+                <img src="/img/facebook.png" alt="" />
+              </a>
+              <a href="http://www.linkedin.com" target="_blank">
+                <img src="/img/linkedin.png" alt="" />
+              </a>
+              <a href="http://www.pinterest.com" target="_blank">
+                <img src="/img/pinterest.png" alt="" />
+              </a>
+              <a href="http://www.instagram.com" target="_blank">
+                <img src="/img/instagram.png" alt="" />
+              </a>
             </div>
             <div className="link">
               <img src="/img/language.png" alt="" />
@@ -81,7 +91,7 @@ function Footer() {
             </div>
             <div className="link">
               <img src="/img/coin.png" alt="" />
-              <span>USD</span>
+              <span>PKR</span>
             </div>
             <img src="/img/accessibility.png" alt="" />
           </div>

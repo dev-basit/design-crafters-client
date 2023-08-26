@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import "./Gig.scss";
+import { auth } from "../../services/authService";
 import { gigService } from "../../services/gigService";
 import { Slider } from "infinite-react-carousel/lib";
+import { projectService } from "../../services/projectService";
 
 function Gig() {
   const [gigDetails, setGigDetails] = useState({});
@@ -19,6 +21,17 @@ function Gig() {
       const response = await gigService.getDetails(id);
       console.log("gig details ", response.data[0]);
       setGigDetails(response.data[0]);
+    } catch (error) {}
+  };
+
+  const handleHire = async () => {
+    try {
+      const ids = {};
+      ids.buyer = auth.getCurrentUserDetails()._id;
+      ids.seller = gigDetails.user._id;
+      console.log("user ids ", ids);
+
+      await projectService.addNewProject(ids);
     } catch (error) {}
   };
 
@@ -272,7 +285,11 @@ function Gig() {
               <span>Additional design</span>
             </div>
           </div> */}
-          <button className="">Hire Now</button>
+          {auth.getCurrentUserDetails().userType === "buyer" && (
+            <button className="" onClick={handleHire}>
+              Hire Now
+            </button>
+          )}
         </div>
       </div>
     </div>

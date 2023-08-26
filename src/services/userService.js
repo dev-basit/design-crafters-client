@@ -41,6 +41,17 @@ async function getMyDetails() {
   }
 }
 
+async function userDetails(id) {
+  try {
+    const response = await http.get(userApiEndpoint + "/details/" + id);
+    console.log("response in userdetails ", response);
+    return response;
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 async function getAllArtists() {
   try {
     return await http.get(userApiEndpoint + "/artists");
@@ -55,4 +66,5 @@ export const userService = {
   addNewUser,
   getMyDetails,
   getAllArtists,
+  userDetails,
 };

@@ -39,9 +39,10 @@ async function addGig(gig) {
   }
 }
 
-async function getAllGigs() {
+async function getAllGigs(params) {
   try {
-    return await http.get(gigApiEndpoint);
+    if (params) return await http.get(gigApiEndpoint + "?title=" + params);
+    else return await http.get(gigApiEndpoint);
   } catch (err) {
     showFailureToaster(err.data.errorMessage);
     return false;
@@ -66,10 +67,20 @@ async function getMyGigs(id) {
   }
 }
 
+async function deleteGig(id) {
+  try {
+    return await http.delete(gigApiEndpoint + "/" + id);
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 export const gigService = {
   gigSchema,
   addGig,
   getAllGigs,
   getDetails,
   getMyGigs,
+  deleteGig,
 };

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./Featured.scss";
 
 function Featured() {
+  const [search, setSearch] = useState("");
+
   return (
     <div className="featured">
       <div className="container">
@@ -12,9 +16,16 @@ function Featured() {
           <div className="search">
             <div className="searchInput">
               <img src="./img/search.png" alt="" />
-              <input type="text" placeholder="Are you looking for artists?" />
+              <input
+                type="text"
+                value={search}
+                placeholder="Are you looking for artists?"
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </div>
-            <button>Search</button>
+            <Link to={`/gigs?title=${search}`}>
+              <button>Search</button>
+            </Link>
           </div>
           <div className="popular">
             <span>Popular:</span>

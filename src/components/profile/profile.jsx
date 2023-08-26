@@ -8,32 +8,28 @@ import { gigService } from "../../services/gigService";
 
 function Profile() {
   const [userDetails, setUserDetails] = useState({});
-  const [myGigs, setMyGigs] = useState([]);
+  const [gigs, setGigs] = useState([]);
   const [showHireButton, setShowHireButton] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
-    const user = auth.getCurrentUserDetails();
-    setUserDetails(user);
-    fetchMyGigs(user._id);
-    fetchUserData(user._id);
-  }, []);
+    fetchGigs(id);
+    fetchUserData(id);
+  }, [id]);
 
-  useEffect(() => {}, []);
-
-  const fetchMyGigs = async (id) => {
+  const fetchGigs = async (id) => {
     try {
       const response = await gigService.getMyGigs(id);
-      setMyGigs(response.data);
+      setGigs(response.data);
     } catch (error) {}
   };
 
   const fetchUserData = async (id) => {
     try {
-      const response = await userService.getMyDetails(id);
-      const { profilePicture, _id } = response.data;
-      setShowHireButton(_id === id ? false : true);
-      setUserDetails((prev) => ({ ...prev, profilePicture }));
+      const response = await userService.userDetails(id);
+      const userData = response.data;
+      setShowHireButton(userData._id !== auth.getCurrentUserDetails()._id ? true : false);
+      setUserDetails({ ...userData });
     } catch (error) {}
   };
 
@@ -42,12 +38,12 @@ function Profile() {
       <ProfileHeader
         name={userDetails?.name?.toUpperCase()}
         profilePic={userDetails.profilePicture}
-        gigs={myGigs.length}
+        gigs={gigs.length}
         showHireMe={showHireButton}
       />
 
       <div className="cards">
-        {myGigs.map((gig) => (
+        {gigs.map((gig) => (
           <div className="profile-work">
             <img src={gig.image} alt="" />
           </div>

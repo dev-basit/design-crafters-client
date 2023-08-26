@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -13,66 +13,86 @@ import Slide from "../../components/slide/Slide";
 import CatCard from "../../components/catCard/CatCard";
 import Card from "../../components/card/Card";
 import { cards, projects } from "../../data";
+import { gigService } from "../../services/gigService";
+import { Link } from "react-router-dom";
 
 function Home() {
+  const [gigs, setGigs] = useState([]);
+
+  useEffect(() => {
+    fetchGigs();
+  }, []);
+
+  useEffect(() => {}, [gigs]);
+
+  const fetchGigs = async () => {
+    try {
+      const response = await gigService.getAllGigs();
+      setGigs(response.data);
+    } catch (error) {}
+  };
+
   return (
     <div className="home">
       <Featured />
 
       {/* <TrustedBy /> */}
 
-      <div className="featured_artists">
-        <h1>Top Artists:</h1>
+      {gigs.length > 0 && (
+        <div className="featured_artists">
+          <h1>Top Work:</h1>
+          <Slide slidesToShow={4} arrowsScroll={4}>
+            {gigs.map((item, index) => (
+              <Card key={item._id} card={item} />
+            ))}
+          </Slide>
+        </div>
+      )}
 
-        <Slide slidesToShow={4} arrowsScroll={4}>
-          {projects.map((card) => (
-            <Card key={card.id} card={card} />
-          ))}
-        </Slide>
-      </div>
-
-      <div className="explore">
-        <div className="container">
-          <h1>Explore the marketplace:</h1>
-          <div className="items">
-            <div className="item">
-              <img src="/img/digital-art.png" alt="" />
-              <div className="line"></div>
-              <span>Digital Art</span>
-            </div>
-            <div className="item">
-              <img src="/img/crafting.png" alt="" />
-              <div className="line"></div>
-              <span>Craft Art</span>
-            </div>
-            <div className="item">
-              <img src="/img/painter.png" alt="" />
-              <div className="line"></div>
-              <span>Painters</span>
-            </div>
-            <div className="item">
-              <img src="/img/photographer.png" alt="" />
-              <div className="line"></div>
-              <span>Photographers</span>
-            </div>
-            <div className="item">
-              <img src="/img/sculptor.png" alt="" />
-              <div className="line"></div>
-              <span>Sculptors</span>
-            </div>
-            <div className="item">
-              <img src="/img/illustration.png" alt="" />
-              <div className="line"></div>
-              <span>Illustrations</span>
-            </div>
-            <div className="item">
-              <img src="/img/ai.png" alt="" />
-              <div className="line"></div>
-              <span>AI Art</span>
+      <Link to="/gigs">
+        <div className="explore">
+          <div className="container">
+            <h1>Explore the marketplace:</h1>
+            <div className="items">
+              <div className="item">
+                <img src="/img/digital-art.png" alt="" />
+                <div className="line"></div>
+                <span>Digital Art</span>
+              </div>
+              <div className="item">
+                <img src="/img/crafting.png" alt="" />
+                <div className="line"></div>
+                <span>Craft Art</span>
+              </div>
+              <div className="item">
+                <img src="/img/painter.png" alt="" />
+                <div className="line"></div>
+                <span>Painters</span>
+              </div>
+              <div className="item">
+                <img src="/img/photographer.png" alt="" />
+                <div className="line"></div>
+                <span>Photographers</span>
+              </div>
+              <div className="item">
+                <img src="/img/sculptor.png" alt="" />
+                <div className="line"></div>
+                <span>Sculptors</span>
+              </div>
+              <div className="item">
+                <img src="/img/illustration.png" alt="" />
+                <div className="line"></div>
+                <span>Illustrations</span>
+              </div>
+              <div className="item">
+                <img src="/img/ai.png" alt="" />
+                <div className="line"></div>
+                <span>AI Art</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       <Slide slidesToShow={5} arrowsScroll={5}>
         {cards.map((card) => (

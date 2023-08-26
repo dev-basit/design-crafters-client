@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import "./Gigs.scss";
 import { gigs } from "../../data";
 import GigCard from "../../components/gigCard/GigCard";
@@ -10,14 +12,22 @@ function Gigs() {
   // const minRef = useRef();
   // const maxRef = useRef();
   const [gigs, setGigs] = useState([]);
+  const [queryParameters] = useSearchParams();
 
   useEffect(() => {
-    fetchGigs();
+    let titleParam = queryParameters.get("title");
+    if (titleParam) {
+      console.log("title param ");
+      fetchGigs(titleParam);
+    } else {
+      console.log("title no param ");
+      fetchGigs();
+    }
   }, []);
 
-  const fetchGigs = async () => {
+  const fetchGigs = async (titleParam) => {
     try {
-      const response = await gigService.getAllGigs();
+      const response = await gigService.getAllGigs(titleParam ? titleParam : "");
       console.log("fetch gigs ", response);
       setGigs(response.data);
     } catch (error) {}
