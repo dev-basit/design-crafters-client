@@ -1,7 +1,7 @@
 import React from "react";
 import "./profile.scss"; // Import the SCSS file
 
-const ProfileHeader = ({ name, profilePic, gigs }) => {
+const ProfileHeader = ({ name, profilePic, gigs, showHireMe = true }) => {
   return (
     <div className="profile-header">
       <div className="profile-pic-container">
@@ -11,9 +11,11 @@ const ProfileHeader = ({ name, profilePic, gigs }) => {
         <div className="name">{name}</div>
         <div className="gigs">{gigs} Gigs</div>
       </div>
-      <div className="hire-button">
-        <button>Hire Me</button>
-      </div>
+      {showHireMe && (
+        <div className="hire-button">
+          <button>Hire Me</button>
+        </div>
+      )}
     </div>
   );
 };

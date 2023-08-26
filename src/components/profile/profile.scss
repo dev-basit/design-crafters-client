@@ -1,88 +1,87 @@
-.profilePage{
+.profilePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  min-height: 70vh;
+  color: white;
+  background-color: var(--background-color);
+
+  .cards {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
-    padding: 2rem;
-    min-height: 70vh;
+    flex-wrap: wrap;
+    row-gap: 1rem;
     color: white;
-    background-color: #8f6161;
+  }
 
-    .cards {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        row-gap: 1rem;
-        color: white;
-      }
+  .gigCard {
+    background-color: white;
+  }
 
-      .gigCard{
-        background-color: white;
-      }
+  .profile-work {
+    width: 324px;
+    height: 200px;
 
-      .profile-work {
-        width: 324px;
-        height: 200px;
-      
-        img {
-          width: 100%;
-          height: 100%;
-          padding: 1rem;
-          object-fit: cover;
-        }
-    }      
-
+    img {
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      object-fit: cover;
+    }
+  }
 }
 
 .profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+  // width: 20rem;
+
+  .profile-pic-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 15rem;
-    // width: 20rem;
-  
-    .profile-pic-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-            height: 12rem;
-        width: 10rem;
+    height: 12rem;
+    width: 10rem;
+  }
+
+  .profile-pic {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    color: var(--primary);
+
+    .name {
+      font-size: 24px;
+      font-weight: bold;
     }
 
-    .profile-pic {
-      width: 8rem;
-      height: 8rem;
-      border-radius: 50%;
-    }
-  
-    .profile-info {
-      display: flex;
-      flex-direction: column;
-  
-      .name {
-        font-size: 24px;
-        font-weight: bold;
-      }
-  
-      .gigs {
-        font-size: 16px;
-        // color: #888;
-      }
-    }
-
-    .hire-button{
-        margin: 1rem;
-    
-        button {
-            width: 70px;
-            height: 50px;
-            border-radius: 5px;
-            border: none;
-            background-color:var(--button-color);
-            color: white;
-            cursor: pointer;
-          }
-  
+    .gigs {
+      font-size: 16px;
+      // color: #888;
     }
   }
+
+  .hire-button {
+    margin: 1rem;
+
+    button {
+      width: 70px;
+      height: 50px;
+      border-radius: 5px;
+      border: none;
+      background-color: var(--button-color);
+      color: white;
+      cursor: pointer;
+    }
+  }
+}

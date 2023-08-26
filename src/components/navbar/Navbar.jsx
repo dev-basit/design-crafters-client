@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import "./Navbar.scss";
@@ -69,7 +69,7 @@ function Navbar() {
               <span>{userDetails?.name}</span>
               {open && (
                 <div className="options">
-                  <Link className="link" to="/profile">
+                  <Link className="link" to={`/profile/${auth.getCurrentUserDetails()._id}`}>
                     My Profile
                   </Link>
                   {userDetails.userType === "seller" && (

@@ -97,7 +97,7 @@ export const links = [
   },
 
   {
-    path: "/profile",
+    path: "/profile/:id",
     component: Profile,
     permissions: ["buyer", "seller"],
   },

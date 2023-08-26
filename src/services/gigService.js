@@ -57,9 +57,19 @@ async function getDetails(id) {
   }
 }
 
+async function getMyGigs(id) {
+  try {
+    return await http.get(gigApiEndpoint + "/myGigs/" + id);
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 export const gigService = {
   gigSchema,
   addGig,
   getAllGigs,
   getDetails,
+  getMyGigs,
 };

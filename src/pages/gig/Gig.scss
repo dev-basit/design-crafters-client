@@ -62,7 +62,9 @@
       .slider {
         // background-color: #F5F5F5;
         img {
-          max-height: 500px;
+          // max-height: 500px;
+          min-width: 600px;
+          max-width: 600px;
           object-fit: contain;
         }
       }
