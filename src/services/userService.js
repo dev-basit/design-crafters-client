@@ -14,7 +14,12 @@ const newUserSchema = Joi.object({
     .max(255)
     .required()
     .email({ tlds: { allow: false } }),
-  password: Joi.string().alphanum().min(8).required(),
+  password: Joi.string()
+    .regex(/^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{8}$/)
+    .required()
+    .messages({
+      "string.pattern.base": "Password must be atleast 8 characters long and alphanumeic",
+    }),
   userType: Joi.string().valid("buyer", "seller").required(),
   profilePicture: Joi.string().required(),
 });
