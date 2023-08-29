@@ -14,7 +14,7 @@ const newUserSchema = Joi.object({
     .max(255)
     .required()
     .email({ tlds: { allow: false } }),
-  password: Joi.string().min(4).max(1024).required(),
+  password: Joi.string().alphanum().min(8).required(),
   userType: Joi.string().valid("buyer", "seller").required(),
   profilePicture: Joi.string().required(),
 });
