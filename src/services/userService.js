@@ -20,6 +20,8 @@ const newUserSchema = Joi.object({
     .messages({
       "string.pattern.base": "Password must be atleast 8 characters long and alphanumeic",
     }),
+  phoneNo: Joi.string().min(3).max(20).required(),
+  experience: Joi.number().integer().min(1).max(30).required(),
   userType: Joi.string().valid("buyer", "seller").required(),
   profilePicture: Joi.string().required(),
 });
