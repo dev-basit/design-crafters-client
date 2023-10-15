@@ -49,50 +49,70 @@ function Home() {
         </div>
       )}
 
-      <Link to="/gigs">
-        <div className="explore">
-          <div className="container">
-            <h1>Explore the marketplace:</h1>
-            <div className="items">
+      {/* <Link to="/gigs?category="></Link> */}
+
+      <div className="explore">
+        <div className="container">
+          <h1>Explore the marketplace:</h1>
+          <div className="items">
+            <Link to="/gigs?category=digitalArtists">
               <div className="item">
                 <img src="/img/digital-art.png" alt="" />
                 <div className="line"></div>
                 <span>Digital Art</span>
               </div>
+            </Link>
+
+            <Link to="/gigs?category=craftArtists">
               <div className="item">
                 <img src="/img/crafting.png" alt="" />
                 <div className="line"></div>
                 <span>Craft Art</span>
               </div>
+            </Link>
+
+            <Link to="/gigs?category=painters">
               <div className="item">
                 <img src="/img/painter.png" alt="" />
                 <div className="line"></div>
                 <span>Painters</span>
               </div>
+            </Link>
+
+            <Link to="/gigs?category=photographers">
               <div className="item">
                 <img src="/img/photographer.png" alt="" />
                 <div className="line"></div>
                 <span>Photographers</span>
               </div>
+            </Link>
+
+            <Link to="/gigs?category=sculptors">
               <div className="item">
                 <img src="/img/sculptor.png" alt="" />
                 <div className="line"></div>
                 <span>Sculptors</span>
               </div>
+            </Link>
+
+            <Link to="/gigs?category=illustrators">
               <div className="item">
                 <img src="/img/illustration.png" alt="" />
                 <div className="line"></div>
                 <span>Illustrations</span>
               </div>
+            </Link>
+
+            <Link to="/gigs?category=aiArtists">
               <div className="item">
                 <img src="/img/ai.png" alt="" />
                 <div className="line"></div>
                 <span>AI Art</span>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
-      </Link>
+      </div>
 
       <Slide slidesToShow={5} arrowsScroll={5}>
         {cards.map((card) => (

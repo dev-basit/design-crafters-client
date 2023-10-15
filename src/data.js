@@ -4,30 +4,35 @@ export const cards = [
     title: "AI Artists",
     desc: "Add talent to AI",
     img: "https://images.pexels.com/photos/7532110/pexels-photo-7532110.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    link: "/gigs?category=aiArtists",
   },
   {
     id: 2,
     title: "Designers",
     desc: "Build yor brand",
     img: "https://images.pexels.com/photos/11295165/pexels-photo-11295165.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    link: "/gigs?category=photographers",
   },
   {
     id: 3,
-    title: "Makeup Artists",
+    title: "Craft Artists",
     desc: "Look awesome",
     img: "https://images.pexels.com/photos/4371669/pexels-photo-4371669.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    link: "/gigs?category=craftArtists",
   },
   {
     id: 4,
-    title: "Craft Artists",
+    title: "Digital Artists",
     desc: "Create Handmade designs",
     img: "https://images.pexels.com/photos/7608079/pexels-photo-7608079.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    link: "/gigs?category=digitalArtists",
   },
   {
     id: 5,
     title: "Illustration",
     desc: "Color you dreams",
     img: "https://images.pexels.com/photos/15032623/pexels-photo-15032623.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    link: "/gigs?category=illustrators",
   },
 ];
 

@@ -16,18 +16,16 @@ function Gigs() {
 
   useEffect(() => {
     let titleParam = queryParameters.get("title");
-    if (titleParam) {
-      console.log("title param ");
-      fetchGigs(titleParam);
-    } else {
-      console.log("title no param ");
-      fetchGigs();
-    }
+    let categoryParam = queryParameters.get("category");
+
+    if (titleParam) fetchGigs(`title=${titleParam}`);
+    else if (categoryParam) fetchGigs(`category=${categoryParam}`);
+    else fetchGigs();
   }, []);
 
-  const fetchGigs = async (titleParam) => {
+  const fetchGigs = async (queryParams) => {
     try {
-      const response = await gigService.getAllGigs(titleParam ? titleParam : "");
+      const response = await gigService.getAllGigs(queryParams ? queryParams : "");
       console.log("fetch gigs ", response);
       setGigs(response.data);
     } catch (error) {}

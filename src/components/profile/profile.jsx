@@ -5,6 +5,7 @@ import ProfileHeader from "./header";
 import { auth } from "../../services/authService";
 import { userService } from "../../services/userService";
 import { gigService } from "../../services/gigService";
+import { getLocalStorageItem } from "../../utils/localStorage";
 
 function Profile() {
   const [userDetails, setUserDetails] = useState({});
@@ -79,9 +80,11 @@ function Profile() {
 
         {!showAboutMe ? (
           <div style={{ alignSelf: "flex-end", margin: "1rem" }}>
-            <button className="button" onClick={() => setShowAboutMe(!showAboutMe)}>
-              Edit
-            </button>
+            {auth.getCurrentUserDetails()._id === id && (
+              <button className="button" onClick={() => setShowAboutMe(!showAboutMe)}>
+                Edit
+              </button>
+            )}
           </div>
         ) : (
           <>

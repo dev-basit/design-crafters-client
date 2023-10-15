@@ -41,7 +41,7 @@ async function addGig(gig) {
 
 async function getAllGigs(params) {
   try {
-    if (params) return await http.get(gigApiEndpoint + "?title=" + params);
+    if (params) return await http.get(gigApiEndpoint + "?" + params);
     else return await http.get(gigApiEndpoint);
   } catch (err) {
     showFailureToaster(err.data.errorMessage);
