@@ -13,6 +13,8 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
+    phoneNo: "",
+    experience: "",
     userType: "",
     profilePicture: "",
   });
@@ -88,6 +90,28 @@ export default function Register() {
           className="registerInput"
           onChange={handleChange}
           autoComplete="password"
+        />
+
+        <label htmlFor="phoneNo">Phone No:</label>
+        <input
+          name="phoneNo"
+          type="text"
+          placeholder="Enter your phone no."
+          className="registerInput"
+          onChange={handleChange}
+          autoComplete="phoneNo"
+        />
+
+        <label htmlFor="experience">Experience</label>
+        <input
+          name="experience"
+          type="number"
+          placeholder="Enter your experience."
+          className="registerInput"
+          onChange={handleChange}
+          min="1"
+          max="30"
+          autoComplete="experience"
         />
         <div className="fileInputContainer">
           <label for="upload" className="file-label">
