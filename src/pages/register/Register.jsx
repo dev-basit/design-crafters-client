@@ -14,7 +14,7 @@ export default function Register() {
     email: "",
     password: "",
     phoneNo: "",
-    experience: "",
+    experience: "1",
     userType: "",
     profilePicture: "",
   });
@@ -50,11 +50,23 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { error } = userService.newUserSchema.validate(user);
-    if (error) return showFailureToaster(error.message);
-
     try {
-      const isSignup = await userService.addNewUser({ ...user });
+      const { error } = userService.newUserSchema.validate(user);
+      if (error) return showFailureToaster(error.message);
+
+      let { name, email, password, phoneNo, userType, profilePicture } = user;
+      let userDetails = {
+        name: name,
+        email: email,
+        password: password,
+        phoneNo: phoneNo,
+        userType: userType,
+        profilePicture: profilePicture,
+      };
+
+      if (userDetails.userType === "seller") userDetails.experience = user.experience;
+
+      const isSignup = await userService.addNewUser({ ...userDetails });
       if (isSignup) navigate("/");
       // setUser({ name: "", email: "", password: "", userType: "" });
     } catch (error) {}
@@ -102,17 +114,6 @@ export default function Register() {
           autoComplete="phoneNo"
         />
 
-        <label htmlFor="experience">Experience</label>
-        <input
-          name="experience"
-          type="number"
-          placeholder="Enter your experience."
-          className="registerInput"
-          onChange={handleChange}
-          min="1"
-          max="30"
-          autoComplete="experience"
-        />
         <div className="fileInputContainer">
           <label for="upload" className="file-label">
             <span className="file-icon">📁</span>
@@ -130,6 +131,22 @@ export default function Register() {
           </select>
         </div>
         <h3>Selected Role: {user.userType}</h3>
+
+        {user.userType === "seller" && (
+          <>
+            <label htmlFor="experience">Experience</label>
+            <input
+              name="experience"
+              type="number"
+              placeholder="Enter your experience."
+              className="registerInput"
+              onChange={handleChange}
+              min="1"
+              max="30"
+              autoComplete="experience"
+            />
+          </>
+        )}
 
         <button className="registerButton">Register</button>
       </form>

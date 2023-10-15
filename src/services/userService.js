@@ -21,7 +21,7 @@ const newUserSchema = Joi.object({
       "string.pattern.base": "Password must be atleast 8 characters long and alphanumeic",
     }),
   phoneNo: Joi.string().min(3).max(20).required(),
-  experience: Joi.number().integer().min(1).max(30).required(),
+  experience: Joi.number().integer().min(1).max(30),
   userType: Joi.string().valid("buyer", "seller").required(),
   profilePicture: Joi.string().required(),
 });
@@ -68,10 +68,22 @@ async function getAllArtists() {
   }
 }
 
+async function updateUser(user) {
+  try {
+    await http.put(userApiEndpoint, { ...user });
+    showSuccessToaster("Successfuly updated.");
+    return true;
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 export const userService = {
   newUserSchema,
   addNewUser,
   getMyDetails,
   getAllArtists,
   userDetails,
+  updateUser,
 };
