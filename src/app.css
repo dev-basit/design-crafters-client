@@ -19,3 +19,14 @@
 body {
   background-color: var(--background-color);
 }
+
+/* utils */
+button {
+  background-color: var(--primary);
+  padding: 10px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
