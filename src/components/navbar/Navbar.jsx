@@ -107,25 +107,25 @@ function Navbar() {
         <>
           <hr />
           <div className="menu">
-            <Link className="link menuLink" to="/">
+            <Link className="link menuLink" to="/gigs?category=digitalArtists">
               Digital Artists
             </Link>
-            <Link className="link menuLink" to="/">
+            <Link className="link menuLink" to="/gigs?category=craftArtists">
               Craft Artists
             </Link>
-            <Link className="link menuLink" to="/">
+            <Link className="link menuLink" to="/gigs?category=painters">
               Painters
             </Link>
-            <Link className="link menuLink" to="/">
+            <Link className="link menuLink" to="/gigs?category=photographers">
               Photographers
             </Link>
-            <Link className="link menuLink" to="/">
+            <Link className="link menuLink" to="/gigs?category=sculptors">
               Sculptors
             </Link>
-            <Link className="link menuLink" to="/">
+            <Link className="link menuLink" to="/gigs?category=illustrators">
               Illustrators
             </Link>
-            <Link className="link menuLink" to="/">
+            <Link className="link menuLink" to="/gigs?category=aiArtists">
               AI Artists
             </Link>
           </div>

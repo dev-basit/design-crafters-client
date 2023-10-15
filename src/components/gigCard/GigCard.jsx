@@ -9,8 +9,8 @@ const GigCard = ({ item }) => {
         <img src={item.image} alt="" />
         <div className="info">
           <div className="user">
-            <img src={item.user.profilePicture} alt="" />
-            <h3>{item.user.name.toUpperCase()}</h3>
+            <img src={item.user?.profilePicture} alt="" />
+            <h3>{item.user?.name.toUpperCase()}</h3>
           </div>
           {/* <p>{item.desc}</p> */}
           {/* <div className="star">

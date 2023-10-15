@@ -29,9 +29,17 @@ function Featured() {
           </div>
           <div className="popular">
             <span>Popular:</span>
-            <button>Digital Artists</button>
-            <button>Illustrators</button>
-            <button>AI Artists</button>
+            <Link to="/gigs?category=digitalArtists">
+              <button>Digital Artists</button>
+            </Link>
+
+            <Link to="/gigs?category=illustrators">
+              <button>Illustrators</button>
+            </Link>
+
+            <Link to="/gigs?category=aiArtists">
+              <button>AI Artists</button>
+            </Link>
           </div>
         </div>
         <div className="right">
