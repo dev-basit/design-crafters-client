@@ -19,7 +19,7 @@ function Gig() {
   const getGigDetails = async (id) => {
     try {
       const response = await gigService.getDetails(id);
-      console.log("gig details ", response.data[0]);
+      console.log("gigdetails ", response.data);
       setGigDetails(response.data[0]);
     } catch (error) {}
   };
@@ -29,7 +29,8 @@ function Gig() {
       const ids = {};
       ids.buyer = auth.getCurrentUserDetails()._id;
       ids.seller = gigDetails.user._id;
-      console.log("user ids ", ids);
+      ids.gig = gigDetails._id;
+      // console.log("gigdetails ", gigDetails);
 
       await projectService.addNewProject(ids);
     } catch (error) {}

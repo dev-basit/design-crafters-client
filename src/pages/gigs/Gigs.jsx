@@ -14,14 +14,15 @@ function Gigs() {
   const [gigs, setGigs] = useState([]);
   const [queryParameters] = useSearchParams();
 
-  useEffect(() => {
-    let titleParam = queryParameters.get("title");
-    let categoryParam = queryParameters.get("category");
+  let titleParam = queryParameters.get("title");
+  let categoryParam = queryParameters.get("category");
 
+  useEffect(() => {
+    console.log("hiii");
     if (titleParam) fetchGigs(`title=${titleParam}`);
     else if (categoryParam) fetchGigs(`category=${categoryParam}`);
     else fetchGigs();
-  }, []);
+  }, [titleParam, categoryParam]);
 
   const fetchGigs = async (queryParams) => {
     try {

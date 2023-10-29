@@ -116,7 +116,9 @@
 
   .explore {
     display: flex;
+    // flex-wrap: wrap;
     justify-content: center;
+    max-width: 98vw;
     // overflow: hidden;
 
     .container {
@@ -133,7 +135,7 @@
       .items {
         display: flex;
         justify-content: center;
-        // flex-wrap: wrap;
+        flex-wrap: wrap;
 
         .item {
           display: flex;
