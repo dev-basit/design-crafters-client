@@ -34,6 +34,9 @@ function Profile() {
       setShowHireButton(userData._id !== auth.getCurrentUserDetails()._id ? true : false);
       setUserDetails({ ...userData });
       setAboutMe(userData?.aboutMe ? userData?.aboutMe : "Not available");
+
+      console.log("1111111111 auth.getCurrentUserDetails ", auth.getCurrentUserDetails());
+      console.log("1111111111 userData ", userData);
     } catch (error) {}
   };
 
@@ -72,6 +75,12 @@ function Profile() {
           {userDetails?.experience && (
             <button className="button" onClick={() => {}} style={{ margin: "1rem" }}>
               {userDetails?.experience} YOE
+            </button>
+          )}
+
+          {userDetails?.phoneNo && (
+            <button className="button" onClick={() => {}} style={{ margin: "1rem" }}>
+              Ph: {userDetails?.phoneNo}
             </button>
           )}
         </div>

@@ -1,6 +1,7 @@
 import Joi from "joi";
 import { http } from "./httpService";
 import { baseURL } from "../constants/config";
+import { showFailureToaster } from "../utils/toaster";
 
 const projectApiEndpoint = baseURL + "projects";
 
@@ -24,7 +25,18 @@ async function addNewProject(ids) {
   }
 }
 
+async function getAllprojects(filters = "") {
+  try {
+    if (filters) return await http.get(projectApiEndpoint + "?" + filters);
+    else return await http.get(projectApiEndpoint);
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 export const projectService = {
   projectSchema,
   addNewProject,
+  getAllprojects,
 };
