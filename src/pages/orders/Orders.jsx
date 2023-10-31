@@ -39,9 +39,7 @@ const Orders = () => {
           </tr>
           {projects.map((item) => (
             <tr key={item._id}>
-              <td>
-                <img className="image" src={item.gig.image} alt="gig" />
-              </td>
+              <td>{item?.gig?.image && <img className="image" src={item?.gig?.image} alt="gig" />}</td>
               <td>{item.gig.title}</td>
               <td>{item.gig.price}</td>
               <td>{currentUser.userType === "seller" ? item.buyer.name : item.seller.name}</td>
