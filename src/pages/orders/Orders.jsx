@@ -24,6 +24,13 @@ const Orders = () => {
     } catch (error) {}
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await projectService.deleteProject(id);
+      setProjects((prev) => prev.filter((project) => project._id !== id));
+    } catch (error) {}
+  };
+
   return (
     <div className="orders">
       <div className="container">
@@ -36,13 +43,26 @@ const Orders = () => {
             <th>Title</th>
             <th>Price</th>
             <th>{currentUser.userType === "seller" ? "Buyer" : "Seller"}</th>
+            <th>Email</th>
+            <th>Phone No</th>
+            <th>Action</th>
           </tr>
           {projects.map((item) => (
-            <tr key={item._id}>
+            <tr key={item._id} style={{ textAlign: "center" }}>
               <td>{item?.gig?.image && <img className="image" src={item?.gig?.image} alt="gig" />}</td>
               <td>{item.gig.title}</td>
               <td>{item.gig.price}</td>
-              <td>{currentUser.userType === "seller" ? item.buyer.name : item.seller.name}</td>
+              <td>{currentUser.userType === "seller" ? item?.buyer?.name : item?.seller?.name}</td>
+              <td>{currentUser.userType === "seller" ? item?.buyer?.email : item?.seller?.email}</td>
+              <td>{currentUser.userType === "seller" ? item?.buyer?.phoneNo : item.seller?.phoneNo}</td>
+              <td>
+                <img
+                  className="delete"
+                  src="./img/delete.png"
+                  alt=""
+                  onClick={() => handleDelete(item._id)}
+                />
+              </td>
             </tr>
           ))}
         </table>
