@@ -35,8 +35,18 @@ async function getAllprojects(filters = "") {
   }
 }
 
+async function deleteProject(id) {
+  try {
+    return await http.delete(projectApiEndpoint + "/" + id);
+  } catch (err) {
+    showFailureToaster(err.data.errorMessage);
+    return false;
+  }
+}
+
 export const projectService = {
   projectSchema,
   addNewProject,
   getAllprojects,
+  deleteProject,
 };
