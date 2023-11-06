@@ -52,14 +52,14 @@ function MyGigs() {
           </tr>
           {myGigs.map((gig) => {
             return (
-              <tr style={{ textAlign: "center" }}>
+              <tr>
                 <td>
                   <img className="image" src={gig.image} alt="" />
                 </td>
                 <td>{gig.title}</td>
                 <td>PKR {gig.price}</td>
                 <td>{gig.deliveredIn} days</td>
-                <td>
+                <td style={{ paddingLeft: "1rem" }}>
                   <img
                     className="delete"
                     src="./img/delete.png"
