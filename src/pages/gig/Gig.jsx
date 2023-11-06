@@ -6,6 +6,7 @@ import { auth } from "../../services/authService";
 import { gigService } from "../../services/gigService";
 import { Slider } from "infinite-react-carousel/lib";
 import { projectService } from "../../services/projectService";
+import { showSuccessToaster } from "../../utils/toaster";
 
 function Gig() {
   const [gigDetails, setGigDetails] = useState({});
@@ -33,6 +34,7 @@ function Gig() {
       // console.log("gigdetails ", gigDetails);
 
       await projectService.addNewProject(ids);
+      showSuccessToaster("Request Successfully Submitted");
     } catch (error) {}
   };
 

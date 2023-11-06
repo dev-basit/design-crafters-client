@@ -48,14 +48,14 @@ const Orders = () => {
             <th>Action</th>
           </tr>
           {projects.map((item) => (
-            <tr key={item._id} style={{ textAlign: "center" }}>
+            <tr key={item._id}>
               <td>{item?.gig?.image && <img className="image" src={item?.gig?.image} alt="gig" />}</td>
               <td>{item.gig.title}</td>
               <td>{item.gig.price}</td>
               <td>{currentUser.userType === "seller" ? item?.buyer?.name : item?.seller?.name}</td>
               <td>{currentUser.userType === "seller" ? item?.buyer?.email : item?.seller?.email}</td>
               <td>{currentUser.userType === "seller" ? item?.buyer?.phoneNo : item.seller?.phoneNo}</td>
-              <td>
+              <td style={{ paddingLeft: "1rem" }}>
                 <img
                   className="delete"
                   src="./img/delete.png"
